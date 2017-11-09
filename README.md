@@ -12,7 +12,7 @@ sudo apachectl restart
 #### httpd.conf編集
 Finderから「フォルダへ移動」Cmd+Shift+G
 ファイルの場所
-```conf:httpd.conf
+```php:httpd.conf
 /private/etc/apache2/httpd.conf
 ```
 
