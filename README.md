@@ -13,6 +13,7 @@ sudo apachectl restart
 Finderから「フォルダへ移動」Cmd+Shift+G
 ファイルの場所
 ```
+ruby:httpd.conf
 /private/etc/apache2/httpd.conf
 ```
 
