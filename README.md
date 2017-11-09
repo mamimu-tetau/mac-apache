@@ -107,6 +107,4 @@ sudo vi /private/etc/hosts
 sudo apachectl restart
 ```
 
-ブラウザでlocalhost.example.comに
-ブラウザでアクセス
-ブラウザで
+ブラウザでlocalhost.example.comにアクセス
