@@ -53,7 +53,7 @@ DocumentRoot "/Users/hacca/localhost/htdocs"
 <Directory "/Users/hacca/localhost/htdocs">
 ```
 
-### httpd.conf編集
+### httpd-vhost.conf編集
 Finderから「フォルダへ移動」Cmd+Shift+G
 ファイルの場所
 
