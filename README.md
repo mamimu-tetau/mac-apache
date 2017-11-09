@@ -17,3 +17,31 @@ Finderから「フォルダへ移動」Cmd+Shift+G
 ```
 
 ##### PHPを使う
+```
+#LoadModule php5_module libexec/apache2/libphp5.so
+(コメントアウト外す↓)
+LoadModule php5_module libexec/apache2/libphp5.so
+```
+
+#### バーチャルホストでホストは管理したいのでもろもろ設定
+
+```
+#LoadModule userdir_module libexec/apache2/mod_userdir.so
+#Include /private/etc/apache2/extra/httpd-userdir.conf
+(コメントアウト外す↓)
+LoadModule userdir_module libexec/apache2/mod_userdir.so
+Include /private/etc/apache2/extra/httpd-userdir.conf
+```
+```
+DocumentRoot "/Library/WebServer/Documents"
+(コメントアウト↓)デフォルトのドキュメントルート無効
+#DocumentRoot "/Library/WebServer/Documents"
+```
+
+##### httpd-vhost.confを使えるように
+```
+#Include /private/etc/apache2/extra/httpd-vhosts.conf
+(コメントアウト外す↓)
+Include /private/etc/apache2/extra/httpd-vhosts.conf
+```
+
