@@ -20,8 +20,10 @@ Finderから「フォルダへ移動」Cmd+Shift+G
 ##### PHPを使う
 ```
 #LoadModule php5_module libexec/apache2/libphp5.so
+#LoadModule php7_module libexec/apache2/libphp7.so(2.4系)
 (コメントアウト外す↓)
 LoadModule php5_module libexec/apache2/libphp5.so
+LoadModule php7_module libexec/apache2/libphp7.so(2.4系)
 ```
 
 ##### 拡張子がhtmlのままでphpを動作できるように
@@ -42,15 +44,6 @@ AddType application/x-httpd-php .php .html（この行追加）
 #Include /private/etc/apache2/extra/httpd-vhosts.conf
 (コメントアウト外す↓)
 Include /private/etc/apache2/extra/httpd-vhosts.conf
-```
-
-##### ドキュメントルート変更
-```
-DocumentRoot "/Library/WebServer/Documents"
-<Directory "/Library/WebServer/Documents">
-(ドキュメントルートを使いたいディレクトリに変更↓)
-DocumentRoot "/Users/hacca/localhost/htdocs"
-<Directory "/Users/hacca/localhost/htdocs">
 ```
 
 ### httpd-vhost.conf編集
@@ -80,10 +73,13 @@ Finderから「フォルダへ移動」Cmd+Shift+G
 ↑これは消してしまう or コメントアウト
 
 <VirtualHost *:80>
-    #作業フォルダ
-    DocumentRoot "/Users/horino/localhost/htdocs/example.com"
     #ローカル用ドメイン
     serverName localhost.example.com
+    #作業フォルダ
+    DocumentRoot "/Users/****/localhost/htdocs/example.com"
+	<Directory "/Users/****/localhost/htdocs/example.com">
+		Require all granted
+	</Directory>
 </VirtualHost>
 ```
 
