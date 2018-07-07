@@ -104,3 +104,18 @@ sudo apachectl restart
 ```
 
 ブラウザでlocalhost.example.comにアクセス
+
+
+### 403 forbidden
+たまにディレクトリ自体のパーミッションが600とかになってたりする。
+そのディレクトリが含まれるディレクトリまで移動
+```
+cd そのディレクトリが含まれるディレクトリまで移動
+ls -l
+drwx------ directory(こんな感じ)
+chmod -R directory(-Rオプションで下層ファイルもまるごと権限設定)
+ls -l(確認)
+drwxr-xr-x directory
+```
+もしくはフォルダ右クリックでも権限変更可能（下層全部はできないかな？）
+
