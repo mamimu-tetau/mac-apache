@@ -130,13 +130,13 @@ fe80::1%lo0     localhost
 127.0.0.1       localhost.wakacre.jp
 127.0.0.1       localhost.mamimu.div
 127.0.0.1       localhost.toyo-rice.jp
-
-127.0.0.1       localhost.toyo-rice.jp
 ```
-
-
-
-追加する
+これも追加しておいてください。
+```
+::1             localhost
+fe80::1%lo0     localhost
+```
+で今回のドメインを追加する
 ```
 127.0.0.1 localhost.example.com
 ```
@@ -144,19 +144,22 @@ fe80::1%lo0     localhost
 vimで編集
 [よく使う Vim のコマンドまとめ](https://qiita.com/hide/items/5bfe5b322872c61a6896)
 
+<br><br><br>
 
-もしくはHosts.prefpaneのようなhosts編集ソフトを使う
-<http://permanentmarkers.nl/software.html>
 
-###　Apacheの再起動
+##　Apacheの再起動
 ```
 sudo apachectl restart
 ```
 
-ブラウザでlocalhost.example.comにアクセス
+ブラウザでlocalhost.example.comにアクセスして表示されればOK
+<br><br><br>
 
 
-### 403 forbidden
+
+# 余談
+
+## 403 forbidden
 たまにディレクトリ自体のパーミッションが600とかになってたりする。
 そのディレクトリが含まれるディレクトリまで移動
 ```
