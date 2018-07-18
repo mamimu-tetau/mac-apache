@@ -1,6 +1,6 @@
-### Macでapacheを設定して起動するとか
+# Macでapacheを設定して起動するとか
 
-#### Macには最初からapache入ってる！
+## Macには最初からapache入ってる！
 ```
 sudo apachectl start
 sudo apachectl stop
@@ -8,23 +8,33 @@ sudo apachectl restart
 ```
 これで起動とかストップは出来る。
 でも色々設定必要っす。
+<br><br><br>
 
-### httpd.conf編集
+
+## httpd.conf編集
 Finderから「フォルダへ移動」Cmd+Shift+G
 ファイルの場所
-
 ```
 /private/etc/apache2/httpd.conf
 ```
+テキストエディタなどで開いて順番に下記を設定していきます。
 
-##### PHPを使う
+
+### PHPを使う
 ```
 #LoadModule php5_module libexec/apache2/libphp5.so
-#LoadModule php7_module libexec/apache2/libphp7.so(2.4系)
-(コメントアウト外す↓)
+(前の#を削除（コメントアウト外す）↓
 LoadModule php5_module libexec/apache2/libphp5.so
-LoadModule php7_module libexec/apache2/libphp7.so(2.4系)
 ```
+これは
+```ないこも
+```
+```
+#LoadModule php7_module libexec/apache2/libphp7.so
+(前の#を削除（コメントアウト外す）↓
+LoadModule php7_module libexec/apache2/libphp7.so
+```
+
 
 ##### 拡張子がhtmlのままでphpを動作できるように
 ```
