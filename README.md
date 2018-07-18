@@ -18,25 +18,23 @@ Finderから「フォルダへ移動」Cmd+Shift+G
 /private/etc/apache2/httpd.conf
 ```
 テキストエディタなどで開いて順番に下記を設定していきます。
-
+<br><br>
 
 ### PHPを使う
+この行ないかもしれないw　なかったらスルー
 ```
 #LoadModule php5_module libexec/apache2/libphp5.so
 (前の#を削除（コメントアウト外す）↓
 LoadModule php5_module libexec/apache2/libphp5.so
-```
-これは
-```ないこも
 ```
 ```
 #LoadModule php7_module libexec/apache2/libphp7.so
 (前の#を削除（コメントアウト外す）↓
 LoadModule php7_module libexec/apache2/libphp7.so
 ```
+<br><br>
 
-
-##### 拡張子がhtmlのままでphpを動作できるように
+### 拡張子がhtmlのままでphpを動作できるように
 ```
 AddType application/x-compress .Z
 AddType application/x-gzip .gz .tgz
@@ -45,21 +43,27 @@ AddType application/x-compress .Z
 AddType application/x-gzip .gz .tgz
 AddType application/x-httpd-php .php .html（この行追加）
 ```
+<br><br>
 
 
-#### バーチャルホストでホストは管理したいのでもろもろ設定
-
-##### httpd-vhost.confを使えるように
+### httpd-vhost.confを使えるように
 ```
 #Include /private/etc/apache2/extra/httpd-vhosts.conf
-(コメントアウト外す↓)
+(前の#を削除（コメントアウト外す）↓
 Include /private/etc/apache2/extra/httpd-vhosts.conf
 ```
+<br><br>
 
-### httpd-vhost.conf編集
+これでhttpd.confの設定終わり。保存して閉じます。  
+閉じる時にパスワード聞かれるかも。  
+それでも保存できない場合は権限を追加してください。  
+[httpd.conf等をエディタで開くための権限追加](https://rensrv.com/macos/grant-of-auth-httpdconf/)
+<br><br><br>
+
+
+## httpd-vhost.conf編集
 Finderから「フォルダへ移動」Cmd+Shift+G
 ファイルの場所
-
 ```
 /private/etc/apache2/extra/httpd-vhosts.conf
 ```
@@ -86,14 +90,52 @@ Finderから「フォルダへ移動」Cmd+Shift+G
     #ローカル用ドメイン
     serverName localhost.example.com
     #作業フォルダ
-    DocumentRoot "/Users/****/localhost/htdocs/example.com"
-	<Directory "/Users/****/localhost/htdocs/example.com">
+    DocumentRoot "/Users/あんたのユーザー名/localhost/htdocs/example.com"
+	<Directory "/Users/あんたのユーザー名/localhost/htdocs/example.com">
 		Require all granted
 	</Directory>
 </VirtualHost>
 ```
+これでhttpd-vhost.confの設定終わり。保存して閉じます。  
+閉じる時にパスワード聞かれるかも。  
+それでも保存できない場合は権限を追加してください。  
+<br><br><br>
 
-### hosts編集
+
+## hosts編集
+上記のバーチャルホストで設定したローカル用ドメインを有効にします。
+hostsファイルは慎重に取り扱ってください。間違うとmac壊れるかもしれませんw
+
+```
+sudo vi /private/etc/hosts
+```
+
+こんな表示になってコピーやカーソルも効かないコマンドモードになります。  
+キーボードの```i```キーを押して編集できるモードにします。
+```
+##
+# Host Database
+#
+# localhost is used to configure the loopback interface
+# when the system is booting.  Do not change this entry.
+##
+127.0.0.1       localhost
+255.255.255.255 broadcasthost
+::1             localhost
+fe80::1%lo0     localhost
+
+127.0.0.1       localhost.senzanan.com
+127.0.0.1       localhost.bichotan.jp
+127.0.0.1       localhost.sekinoaoi.jp
+127.0.0.1       localhost.wakacre.jp
+127.0.0.1       localhost.mamimu.div
+127.0.0.1       localhost.toyo-rice.jp
+
+127.0.0.1       localhost.toyo-rice.jp
+```
+
+
+
 追加する
 ```
 127.0.0.1 localhost.example.com
@@ -101,9 +143,7 @@ Finderから「フォルダへ移動」Cmd+Shift+G
 
 vimで編集
 [よく使う Vim のコマンドまとめ](https://qiita.com/hide/items/5bfe5b322872c61a6896)
-```
-sudo vi /private/etc/hosts
-```
+
 
 もしくはHosts.prefpaneのようなhosts編集ソフトを使う
 <http://permanentmarkers.nl/software.html>
