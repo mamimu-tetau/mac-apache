@@ -60,6 +60,9 @@ Include /private/etc/apache2/extra/httpd-vhosts.conf
 [httpd.conf等をエディタで開くための権限追加](https://rensrv.com/macos/grant-of-auth-httpdconf/)
 <br><br><br>
 
+エディタによっては権限を追加しても保存できないものがあります。
+SublimeText、BracketsはOKぽいです。
+<br><br><br>
 
 ## httpd-vhost.conf編集
 Finderから「フォルダへ移動」Cmd+Shift+G
