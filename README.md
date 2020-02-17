@@ -1,44 +1,49 @@
 # Macでapacheを設定して起動するとか
-
-## Macには最初からapache入ってる！
+<br><br>
+## Macには最初からサーバ（apache）入ってる！
 ```
-sudo apachectl start
-sudo apachectl stop
-sudo apachectl restart
+$ sudo apachectl start
+$ sudo apachectl stop
+$ sudo apachectl restart
 ```
-これで起動とかストップは出来る。
+ターミナルで起動とかストップは出来る。
 でも色々設定必要っす。
 <br><br><br>
 
+## Table of Contents
+- [1.httpd.conf編集](#1.httpd.conf編集)
+- [1.ローカル側（Mac）で鍵を生成する](#1.ローカル側（Mac）で鍵を生成する)
+- [2.configファイルの作成・編集](#2.configファイルの作成・編集)
+- [3.サーバに公開鍵を登録](#3.サーバに公開鍵を登録)
+- [SFTPアプリの設定](#SFTPアプリの設定)
+- [Gitクライアントとの接続](#Gitクライアントとの接続)
+- [Gitクライアントとのサーバの接続](#Gitクライアントとのサーバの接続)
+- [Permission denied (publickey)](#Permission-denied-(publickey))
+- [再起動のたびにssh-addした鍵がクリアされる](#再起動のたびにssh-addした鍵がクリアされる)
+<br /><br />
 
-## httpd.conf編集
-Finderから「フォルダへ移動」Cmd+Shift+G
+
+## 1.httpd.conf編集
+Finderから`Command + Shift +G`で移動先に`~/.ssh`<br />
 ファイルの場所
 ```
 /private/etc/apache2/httpd.conf
 ```
-テキストエディタなどで開いて順番に下記を設定していきます。
+エディタなどで開いて順番に下記を設定していきます。<br />
+Mac純正テキストエディターとかメモ帳は使わない！BracketとかSublimeTextとかCotEditorとかで。<br />
+SublimeTextだとパスワードを入力すれば保存できましたが、その他エディタではできない模様。その際はファイル自体の権限に自分を追加していただく方法があります。自己責任でお願いします。
+[権限追加](https://rensrv.com/macos/grant-of-auth-httpdconf/)
 <br><br>
 
-### PHPを使う
-この行ないかもしれないw　なかったらスルー
+### PHPを有効にする
+前の#を削除（コメントアウト外す）=有効にする
 ```
-#LoadModule php5_module libexec/apache2/libphp5.so
-(前の#を削除（コメントアウト外す）↓
-LoadModule php5_module libexec/apache2/libphp5.so
-```
-```
-#LoadModule php7_module libexec/apache2/libphp7.so
-(前の#を削除（コメントアウト外す）↓
 LoadModule php7_module libexec/apache2/libphp7.so
 ```
 <br><br>
 
 ### 拡張子がhtmlのままでphpを動作できるように
 ```
-AddType application/x-compress .Z
-AddType application/x-gzip .gz .tgz
-↓
 AddType application/x-compress .Z
 AddType application/x-gzip .gz .tgz
 AddType application/x-httpd-php .php .html（この行追加）
@@ -55,9 +60,6 @@ Include /private/etc/apache2/extra/httpd-vhosts.conf
 <br><br>
 
 これでhttpd.confの設定終わり。保存して閉じます。  
-閉じる時にパスワード聞かれるかも。  
-それでも保存できない場合は権限を追加してください。  
-[httpd.conf等をエディタで開くための権限追加](https://rensrv.com/macos/grant-of-auth-httpdconf/)
 <br><br><br>
 
 
