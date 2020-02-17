@@ -12,14 +12,10 @@ $ sudo apachectl restart
 
 ## Table of Contents
 - [1.httpd.conf編集](#1.httpd.conf編集)
-- [1.ローカル側（Mac）で鍵を生成する](#1.ローカル側（Mac）で鍵を生成する)
-- [2.configファイルの作成・編集](#2.configファイルの作成・編集)
-- [3.サーバに公開鍵を登録](#3.サーバに公開鍵を登録)
-- [SFTPアプリの設定](#SFTPアプリの設定)
-- [Gitクライアントとの接続](#Gitクライアントとの接続)
-- [Gitクライアントとのサーバの接続](#Gitクライアントとのサーバの接続)
-- [Permission denied (publickey)](#Permission-denied-(publickey))
-- [再起動のたびにssh-addした鍵がクリアされる](#再起動のたびにssh-addした鍵がクリアされる)
+- [2.httpd-vhost.conf編集](#2.httpd-vhost.conf編集)
+- [3.hosts編集](#3.hosts編集)
+- [4.Apacheの再起動](#4.Apacheの再起動)
+- [403 forbidden](#403 forbidden)
 <br /><br />
 
 
@@ -63,8 +59,8 @@ Include /private/etc/apache2/extra/httpd-vhosts.conf
 <br><br><br>
 
 
-## httpd-vhost.conf編集
-Finderから「フォルダへ移動」Cmd+Shift+G
+## 2.httpd-vhost.conf編集
+Finderから`Command + Shift +G`で移動先に`~/.ssh`<br />
 ファイルの場所
 ```
 /private/etc/apache2/extra/httpd-vhosts.conf
@@ -104,7 +100,7 @@ Finderから「フォルダへ移動」Cmd+Shift+G
 <br><br><br>
 
 
-## hosts編集
+## 3.hosts編集
 上記のバーチャルホストで設定したローカル用ドメインを有効にします。
 hostsファイルは慎重に取り扱ってください。間違うとmac壊れるかもしれませんw
 
@@ -149,7 +145,7 @@ vimで編集
 <br><br><br>
 
 
-##　Apacheの再起動
+##　4.Apacheの再起動
 ```
 sudo apachectl restart
 ```
