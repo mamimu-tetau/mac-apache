@@ -20,7 +20,7 @@ $ sudo apachectl restart
 
 
 ## 1.httpd.conf編集
-Finderから`Command + Shift +G`で移動先に`~/.ssh`<br />
+Finderから`Command + Shift +G`で移動先に`/private/etc/apache2/httpd.conf`<br />
 ファイルの場所
 ```
 /private/etc/apache2/httpd.conf
